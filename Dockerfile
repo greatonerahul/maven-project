@@ -1,3 +1,4 @@
-FROM php:7.2-apache
-COPY src/ /var/www/html/
+FROM tomcat:8
+# Take the war and copy to webapps of tomcat
+COPY target/*.war /usr/local/tomcat/webapps/
 EXPOSE 8085
