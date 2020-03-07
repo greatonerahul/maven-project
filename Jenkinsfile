@@ -1,0 +1,21 @@
+node{     
+      
+      stage('scm checkout') {
+         steps {
+             echo "you are building ${params.Branch}"
+             git url: "https://github.com/greatonerahul/simple-java-maven-app.git",
+         }
+      }
+      if("${params.Branch}" == 'stg'){        
+                stage('build'){
+                  sh """
+                  mvn --version
+                  mvn clean package
+                  """
+                }
+            }
+            else{
+                  echo "you are not entitled to build any other branch then ${params.Branch}"
+                  return
+                }
+        }
